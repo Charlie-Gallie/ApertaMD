@@ -1,0 +1,7 @@
+#include "Window.hpp"
+
+AMD_NAMESPACE_BEGIN
+
+
+
+AMD_NAMESPACE_END
