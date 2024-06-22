@@ -2,6 +2,7 @@
 
 #include "Window/Window.hpp"
 #include "UI/UI.hpp"
+#include "Project/Project.hpp"
 
 #include "imgui.h"
 
@@ -12,6 +13,9 @@ int main()
 
 	window.Initialize();
 	ui.Initialize();
+	AMD::Project& project = AMD::Project::GetInstance();
+
+	project.LoadProject("test_project.json");
 
 	while (window.IsAlive())
 	{

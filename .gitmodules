@@ -2,3 +2,6 @@
 	path = Source/ApertaMD/Vendor/imgui
 	url = https://github.com/ocornut/imgui.git
 	branch = docking
+[submodule "Source/ApertaMD/Vendor/json"]
+	path = Source/ApertaMD/Vendor/json
+	url = https://github.com/nlohmann/json.git
