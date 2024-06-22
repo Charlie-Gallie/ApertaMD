@@ -2,6 +2,8 @@
 #ifndef AMD_ERRORHANDLING_ERRORHANDLING
 #define AMD_ERRORHANDLING_ERRORHANDLING
 
+#include <cstdio>
+
 #include "Utilities/Macros.hpp"
 #include "Utilities/Types.hpp"
 
