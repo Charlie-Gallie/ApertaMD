@@ -22,15 +22,41 @@ public:
 		return instance;
 	}
 
-	// This takes a project file and populates all of the members of this class to match the project
+	/**
+	* This takes a project file and populates all of the members of this class to match the project
+	*/
 	Status LoadProject(const std::filesystem::path&);
+
+	/**
+	* Returns true if there is currently a loaded project, otherwise false
+	*/
+	bool IsProjectOpen();
 
 private:
 	Project() = default;
 
+	bool isProjectOpen = false;
 	nlohmann::json projectFileData;
 	std::fstream projectFileHandle;
 	Configuration configuration;
+
+	/**
+	* Assigns the boolean reference to true if the required keys exist to load a project, otherwise assigns false
+	* This does not completely validate the project data
+	* Returns Status::SUCCESS always
+	* In the instance the call fails, the boolean reference is left in an undefined state
+	* 
+	* In the future, this function should be somehow replaced with a system which has a realization of all keys which should exist
+	* E.g., an enumeration to associate with the keys, something like ProjectConfiguration.GetValue(ProjectConfigKeys<Keys::PROJECT_NAME>());
+	* The example is long but it's just to convey the point
+	*/
+	Status DoBasicKeysExist(bool&);
+
+	/**
+	* This function takes the project file data and parses it into the project configuration
+	* Returns Status::FAIL if there is a failure parsing, otherwise Status::SUCCESS
+	*/
+	Status ParseConfiguration();
 };
 
 AMD_NAMESPACE_END

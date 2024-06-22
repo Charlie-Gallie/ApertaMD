@@ -1,2 +1,26 @@
 {
+	"project_configuration":
+	{
+		"name": "abcd",
+		"entry_templates":
+		{
+			"0":
+			{
+				"name": "TestTemplate",
+				"fields":
+				{
+					"0":
+					{
+						"name": "ID",
+						"type": "U32"
+					},
+					"1":
+					{
+						"name": "Name",
+						"type": "string"
+					}
+				}
+			}
+		}
+	}
 }

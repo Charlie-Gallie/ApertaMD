@@ -32,6 +32,8 @@ public:
 	/**
 	* Adds a template to the internal configuration list of entry templates
 	* Retusn Status::FAIL if a template with the name already exists, otherwise Status::SUCCESS
+	* 
+	* TODO: This is dumb, why don't you just pass in the full struct rather than the name seperate
 	*/
 	Status AddTemplate(const std::string&, const std::vector<EntryField>&);
 
