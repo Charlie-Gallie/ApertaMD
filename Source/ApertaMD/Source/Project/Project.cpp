@@ -102,7 +102,7 @@ Status Project::ParseConfiguration()
 		{
 			entryTemplate.fields.push_back({
 				.name = fieldTemplate["name"].get<std::string>(),
-				.type = fieldTemplate["type"].get<std::string>()
+				.type = fieldTemplate["data_type"].get<std::string>()
 			});
 		}
 
