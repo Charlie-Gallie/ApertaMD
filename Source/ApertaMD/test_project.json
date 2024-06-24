@@ -2,7 +2,7 @@
 	"apertamd_version_major": 0,
 	"apertamd_version_minor": 0,
 	"apertamd_version_patch": 0,
-	"project_configuration":
+	"project_environment":
 	{
 		"name": "Test Project",
 		"entry_templates":

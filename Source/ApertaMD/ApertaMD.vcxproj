@@ -160,7 +160,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Source\Entry\Entry.cpp" />
-    <ClCompile Include="Source\Project\Configuration.cpp" />
+    <ClCompile Include="Source\Project\DataInterface.cpp" />
     <ClCompile Include="Source\Project\Project.cpp" />
     <ClCompile Include="Source\UI\UI.cpp" />
     <ClCompile Include="Source\Window\Window.cpp" />
@@ -174,7 +174,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\ErrorHandling\ErrorHandling.hpp" />
-    <ClInclude Include="Source\Project\Configuration.hpp" />
+    <ClInclude Include="Source\Project\DataInterface.hpp" />
     <ClInclude Include="Source\Project\Project.hpp" />
     <ClInclude Include="Source\UI\Layer.hpp" />
     <ClInclude Include="Source\UI\Layers\TestLayer.hpp" />

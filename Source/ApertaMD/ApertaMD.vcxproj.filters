@@ -48,7 +48,7 @@
     <ClCompile Include="Source\Project\Project.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Project\Configuration.cpp">
+    <ClCompile Include="Source\Project\DataInterface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -92,7 +92,7 @@
     <ClInclude Include="Source\Project\Project.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Project\Configuration.hpp">
+    <ClInclude Include="Source\Project\DataInterface.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
