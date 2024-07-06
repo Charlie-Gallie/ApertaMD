@@ -2,9 +2,9 @@
 
 AMD_NAMESPACE_BEGIN
 
-bool DataInterface::IsProjectOpen()
+bool DataInterface::IsDataLoaded()
 {
-	return isProjectOpen;
+	return isDataLoaded;
 }
 
 Status DataInterface::LoadProject(const std::filesystem::path& projectPath)
@@ -33,7 +33,7 @@ Status DataInterface::LoadProject(const std::filesystem::path& projectPath)
 	}
 
 	// Specify that the project is loaded
-	isProjectOpen = true;
+	isDataLoaded = true;
 
 	return Status::SUCCESS;
 }
