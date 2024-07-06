@@ -47,7 +47,7 @@ public:
 	Status LoadProject(const std::filesystem::path&);
 
 	/**
-	* Returns true is there is currently an open project, otherwise false
+	* Returns true is there is currently an open data file handle, otherwise false
 	*/
 	bool IsDataLoaded();
 
