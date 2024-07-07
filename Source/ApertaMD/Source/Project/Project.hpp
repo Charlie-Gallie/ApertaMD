@@ -13,6 +13,24 @@ AMD_NAMESPACE_BEGIN
 class Project
 {
 public:
+	class Environment
+	{
+		friend class Project;
+	public:
+		std::string GetName();
+		U32 GetVersionMajor();
+		U32 GetVersionMinor();
+		U32 GetVersionPatch();
+
+	private:
+		Environment() = default;
+
+		std::string name = "";
+		U32 versionMajor = 0;
+		U32 versionMinor = 0;
+		U32 versionPatch = 0;
+	};
+
 	static inline Project& GetInstance()
 	{
 		static Project instance;
@@ -32,6 +50,9 @@ public:
 private:
 	Project() = default;
 
+	Status PopulateEnvironmentFields();
+
+	Environment environment;
 	bool isProjectOpen = false;
 };
 

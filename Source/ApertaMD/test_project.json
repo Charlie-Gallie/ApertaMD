@@ -1,29 +1,22 @@
 {
-	"apertamd_version_major": 0,
-	"apertamd_version_minor": 0,
-	"apertamd_version_patch": 0,
-	"project_environment":
-	{
+	"project_environment": {
+		"apertamd_version_major": 0,
+		"apertamd_version_minor": 0,
+		"apertamd_version_patch": 0,
 		"name": "Test Project",
-		"entry_templates":
-		{
-			"0":
-			{
+		"entry_templates": {
+			"0": {
 				"name": "Telecommand",
-				"fields":
-				{
-					"0":
-					{
+				"fields": {
+					"0": {
 						"name": "Name",
 						"data_type": "string"
 					},
-					"1":
-					{
+					"1": {
 						"name": "ID",
 						"data_type": "U32"
 					},
-					"2":
-					{
+					"2": {
 						"name": "Argument",
 						"data_type": "U32"
 					}
@@ -31,24 +24,18 @@
 			}
 		}
 	},
-	"project_definition":
-	{
-		"sheets":
-		{
-			"0":
-			{
+	"project_definition": {
+		"sheets": {
+			"0": {
 				"name": "Telecommands",
 				"entry_template": "Telecommand",
-				"entries":
-				{
-					"0":
-					{
+				"entries": {
+					"0": {
 						"0": "Enable LED 1",
 						"1": 0,
 						"2": 1
 					},
-					"1":
-					{
+					"1": {
 						"0": "Disable LED 1",
 						"1": 0,
 						"2": 0

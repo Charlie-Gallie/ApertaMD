@@ -4,6 +4,7 @@
 
 #include <filesystem>
 #include <fstream>
+#include <initializer_list>
 #include <unordered_map>
 #include <vector>
 
@@ -77,12 +78,28 @@ public:
 		}
 
 		// Get the root of the JSON
-		nlohmann::json& workingNode = dataJSON;
+		nlohmann::json workingNode = dataJSON;
+
+		// This is used to create a string representation of the node, e.g., "project/metadata/name/"
+		std::string accessorPath = "";
 
 		// Iterate through all accessors, changing the working node to where the accessor specifies
 		for (const Accessor accessor : {accessors...})
 		{
-			workingNode = dataJSON[accessorMap[accessor]];
+			std::string nodeName = accessorMap[accessor];
+			accessorPath += nodeName + '/';
+
+			try
+			{
+				workingNode = workingNode[nodeName];
+			}
+			catch (...)
+			{
+				AMD_ASSERT(false, "Failed to index into a JSON node")
+				{
+					return Status::FAIL;
+				}
+			}
 		}
 
 		try
@@ -91,7 +108,7 @@ public:
 		}
 		catch (...)
 		{
-			AMD_ASSERT(false, "Failed to get JSON value")
+			AMD_ASSERT(false, "Failed to get JSON value: \"%s\"", accessorPath.c_str())
 			{
 				return Status::FAIL;
 			}

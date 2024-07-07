@@ -11,21 +11,14 @@ using namespace AMD;
 
 int main()
 {
+	Project& project = Project::GetInstance();
+	DataInterface& dataInterface = DataInterface::GetInstance();
 	Window& window = Window::GetInstance();
 	UI& ui = UI::GetInstance();
 
 	window.Initialize();
 	ui.Initialize();
-	Project& project = Project::GetInstance();
-
 	project.LoadProject("test_project.json");
-
-	DataInterface& dataInterface = DataInterface::GetInstance();
-
-	std::string projectName;
-	dataInterface.GetValue(projectName, Accessor::PROJECT_ENVIRONMENT, Accessor::NAME);
-
-	std::cout << projectName << std::endl;
 
 	while (window.IsAlive())
 	{
