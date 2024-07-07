@@ -5,6 +5,7 @@
 #include <filesystem>
 #include <fstream>
 #include <unordered_map>
+#include <vector>
 
 #include <nlohmann/json.hpp>
 
@@ -17,7 +18,7 @@ AMD_NAMESPACE_BEGIN
 * This is used for the class member DataInterface::accessorMap
 * This is used to access project data regions agnostic to their string or binary name
 */
-enum class Accessor
+enum class Accessor : Word
 {
 	APERTAMD_VERSION_MAJOR,
 	APERTAMD_VERSION_MINOR,
@@ -34,6 +35,18 @@ enum class Accessor
 class DataInterface
 {
 public:
+/*
+	struct Node
+	{
+		friend class DataInterface;
+
+		std::vector<Node> GetChildren();
+
+	private:
+		Node() = default;
+	};
+*/
+
 	static inline DataInterface& GetInstance()
 	{
 		static DataInterface instance;
@@ -44,19 +57,55 @@ public:
 	* This will load a project by a given path. Internally, this will make the JSON data structure for it.
 	* Returns Status::SUCCESS if the project loaded successfully, otherwise Status::FAIL
 	*/
-	Status LoadProject(const std::filesystem::path&);
+	Status LoadData(const std::filesystem::path&);
 
 	/**
 	* Returns true is there is currently an open data file handle, otherwise false
 	*/
 	bool IsDataLoaded();
 
+	/**
+	* 
+	*/
+	template<typename Type, typename ... Accessors>
+	Status GetValue(Type& value, Accessors ... accessors)
+	{
+		// Ensure the project data is loaded
+		AMD_ASSERT(IsDataLoaded() == true, "Attempted to get data field while no data loaded")
+		{
+			return Status::FAIL;
+		}
+
+		// Get the root of the JSON
+		nlohmann::json& workingNode = dataJSON;
+
+		// Iterate through all accessors, changing the working node to where the accessor specifies
+		for (const Accessor accessor : {accessors...})
+		{
+			workingNode = dataJSON[accessorMap[accessor]];
+		}
+
+		try
+		{
+			value = workingNode.get<Type>();
+		}
+		catch (...)
+		{
+			AMD_ASSERT(false, "Failed to get JSON value")
+			{
+				return Status::FAIL;
+			}
+		}
+
+		return Status::SUCCESS;
+	}
+
 private:
 	DataInterface() = default;
 
 	bool isDataLoaded = false;
-	std::fstream projectFileHandle;
-	nlohmann::json projectJSON;
+	std::fstream dataFileHandle;
+	nlohmann::json dataJSON;
 
 	/**
 	* This is used to separate the string literal of the project file entries to the code implementation

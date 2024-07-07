@@ -7,27 +7,27 @@ bool DataInterface::IsDataLoaded()
 	return isDataLoaded;
 }
 
-Status DataInterface::LoadProject(const std::filesystem::path& projectPath)
+Status DataInterface::LoadData(const std::filesystem::path& projectPath)
 {
 	// Attempt to open the file
-	projectFileHandle.open(projectPath, std::fstream::in | std::fstream::out);
+	dataFileHandle.open(projectPath, std::fstream::in | std::fstream::out);
 
 	// Ensure the file has successfully opened
-	AMD_ASSERT(projectFileHandle.is_open() == true, "Failed to open project file: \"%s\"", projectPath.string().c_str())
+	AMD_ASSERT(dataFileHandle.is_open() == true, "Failed to open project file: \"%s\"", projectPath.string().c_str())
 	{
 		return Status::FAIL;
 	}
 
 	// Attempt to parse the JSON project file
-	projectJSON = projectJSON.parse(
-		projectFileHandle,
+	dataJSON = dataJSON.parse(
+		dataFileHandle,
 		nullptr, // Parser callback - "a parser callback function of type parser_callback_t which is used to
 		         // control the deserialization by filtering unwanted values (optional)" - nlohmann json API
 		false // Disallow exceptions
 	);
 
 	// Throw if JSON parsing failed
-	AMD_ASSERT(projectJSON.is_discarded() == false, "Failed to parse project file - The contents are likely malformed")
+	AMD_ASSERT(dataJSON.is_discarded() == false, "Failed to parse project file - The contents are likely malformed")
 	{
 		return Status::FAIL;
 	}

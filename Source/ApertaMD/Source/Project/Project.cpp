@@ -9,7 +9,7 @@ Status Project::LoadProject(const std::filesystem::path& projectPath)
 	DataInterface& dataInterface = DataInterface::GetInstance();
 
 	// Attempt to load project file
-	Status loadProjectStatus = dataInterface.LoadProject(projectPath);
+	Status loadProjectStatus = dataInterface.LoadData(projectPath);
 
 	AMD_ASSERT(loadProjectStatus == Status::SUCCESS, "Failed to load project: \"%s\"", projectPath.string().c_str())
 	{
